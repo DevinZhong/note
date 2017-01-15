@@ -4,9 +4,11 @@
 
 # Site
 title: 黑客笔记
-subtitle: 有记有查，这才是我的笔记
-description:
+subtitle: 有记有查
+description: 个人笔记，比较杂，更新较频繁。
+keywords: notes, coding, Japanese
 author: Devin Zhong
+email: devinzhong@outlook.com
 language: zh-Hans
 timezone: Asia/Shanghai
 
@@ -63,7 +65,32 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: hexo-theme-indigo
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 0
+
+
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

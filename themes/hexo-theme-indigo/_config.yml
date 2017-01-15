@@ -19,24 +19,21 @@ menu:
     text: Categories
     url: /categories
   github:
-    url: https://github.com/yscoder
+    url: https://github.com/devinzhong
     target: _blank
   weibo:
-    url: http://www.weibo.com/ysweb
+    url: http://www.weibo.com/3112376454
     target: _blank
-  link:
-    text: 测试
-    url: /custom
 
 rss: /atom.xml
 
 # 你的头像url
 avatar: /img/avatar.jpg
 # favicon
-favicon: /favicon.ico
+favicon: /favicon.png
 
 # email
-email: 634206017@qq.com
+email: devinzhong@outlook.com
 
 # 设置 Android L Chrome 浏览器状态栏颜色
 color: '#3F51B5'
@@ -61,9 +58,9 @@ share: true
 
 # 是否开启打赏，关闭 reward: false
 reward:
-  title: 谢谢大爷~
+  title: 请我喝杯茶吧~
   wechat: /img/wechat.jpg     #微信，关闭设为 false
-  alipay: /img/alipay.jpg     #支付宝，关闭设为 false
+  alipay: false     #支付宝，关闭设为 false
 
 # 是否开启搜索
 search: true
@@ -77,7 +74,7 @@ toc:
   list_number: true  # 是否显示数字排序
 
 # 文章页版权声明内容，hexo中所有变量及辅助函数等均可调用，具体请查阅 hexo.io
-copyright: 这里写留言或版权声明：<a href="<%- url_for(page.path).replace(/index\.html$/, '') %>" target="_blank" rel="external"><%- url.replace(/index\.html$/, '') %></a>
+  copyright: 本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.zh">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可。<br />原文地址：<a href="<%- url_for(page.path).replace(/index\.html$/, '') %>" target="_blank" rel="external"><%- url.replace(/index\.html$/, '') %></a>
 
 # 站长统计，如要开启，输入CNZZ站点id，如 cnzz: 1255152447
 cnzz: false
@@ -89,7 +86,7 @@ baidu_tongji: false
 tajs: false
 
 # google
-google_analytics: false
+google_analytics: UA-84777013-1
 google_site_verification: false
 
 # less
@@ -99,7 +96,7 @@ less:
     - source/css/style.less
 
 # 是否开启多说评论，填写你在多说创建的站点二级域名
-duoshuo: ysblog
+duoshuo: hacker-notes
 # 是否开启多说评论计数（该服务不稳定）
 duoshuo_count: false
 # 使用 disqus 时关闭多说评论
@@ -112,10 +109,10 @@ disqus_shortname: false
 canonical: false
 
 # 版权起始年份
-since_year: 2015
+since_year: 2016
 
 # 用户页面中作者相关的描述性文字，如不需要设为 false
-about: 用户页面中作者相关的描述性文字，如不需要设为 false
+about: false
 
 # “不蒜子”访问量统计，详见 http://ibruce.info/2015/04/04/busuanzi/
 visit_counter:
