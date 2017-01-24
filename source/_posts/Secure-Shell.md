@@ -1,6 +1,7 @@
 ---
 title: Secure Shell
 date: 2017-01-17 00:30:44
+categories: Linux
 tags:
   - Linux
 ---

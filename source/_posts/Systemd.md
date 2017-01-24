@@ -1,6 +1,7 @@
 ---
 title: Systemd
 date: 2017-01-15 22:33:35
+categories: Linux
 tags:
   - Linux
   - Systemd

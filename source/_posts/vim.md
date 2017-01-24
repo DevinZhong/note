@@ -2,12 +2,15 @@
 title: vim
 copyright: true
 date: 2016-10-01 01:35:55
+categories: Linux
 tags:
   - vim
   - Linux
 ---
 
 > Vim是從vi發展出來的一個文字編輯器。代碼補完、編譯及錯誤跳轉等方便編程的功能特別豐富，在程式設計師中被廣泛使用。和Emacs並列成為類Unix系統用戶最喜歡的編輯器。
+
+<!-- more -->
 
 ## 模式切换
 - `i`：插入
