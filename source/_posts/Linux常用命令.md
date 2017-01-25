@@ -5,36 +5,8 @@ date: 2016-09-28 15:59:12
 tags: Linux
 ---
 
-
-## kill
-以停止nginx为例
-```bash
-ps -ef | grep nginx
-# 从容停止
-kill -QUIT 主进程号
-# 快速停止
-kill -TERM 主进程号
-# 强制停止
-pkill -9 nginx
-# 若在nginx.conf配置了pid文件存放路径则该文件存放的就是Nginx主进程号，如果没指定则放在nginx的logs目录下。有了pid文 件，我们就不用先查询Nginx的主进程号，而直接向Nginx发送信号了，命令如下：
-kill -信号类型 '/usr/nginx/logs/nginx.pid'
-```
-
-
-## 配置开机启动（老方法，未测试）
-```bash
-#Create the init.d script.
-sudo vim /etc/init.d/<config>
-#Make it executable.
-sudo chmod 755 /etc/init.d/<config>
-#Configure your operating system to run it on boot.
-sudo update-rc.d <config> defaults
-#Reboot
-
-# 方案2
-echo "nohup /usr/local/bin/ss-server -s 'xxx.xxx.xxx.xxx' -p '123456' -k 'passwd' -m aes-256-cfb &" >> /etc/rc.local
-```
-
+> 待整理的 Linux 命令
+<!-- more -->
 
 ## 端口占用情况
 ```bash

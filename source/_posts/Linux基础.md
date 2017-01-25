@@ -25,5 +25,5 @@ cat files.txt | uniq | grep txt | sort
 
 ## 常识
 - 在UNIX世界，rc经常被用作程序之启动脚本的文件名。他是“run commands”的缩写。
-- 根据Unix传统，程序执行成功返回0，否则返回1。
+- 根据Unix传统，程序执行成功返回0，否则返回大于0的数值。
 

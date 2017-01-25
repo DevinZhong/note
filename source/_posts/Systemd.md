@@ -33,22 +33,3 @@ sudo systemctl restart httpd.service
 | Runlevel 4           | runlevel4.target | multi-user.target |
 | Runlevel 5           | runlevel5.target | graphical.target |
 | Runlevel 6           | runlevel6.target | reboot.target |
-
-## 常见信号表
-| 信号 | 数值 | 处理 | 快捷键 |
-|-----|-----|------------------|----------|
-| HUP | 1 | 终端断线，让进程挂起，睡眠 | |
-| INT | 2 | 中断 | Ctrl + C |
-| QUIT | 3 | 退出 | Ctrl + \ |
-| TERM | 15 | 终止，正常的退出进程 | |
-| KILL | 9 | 强制终止 | |
-| CONT | 18 | 继续（与STOP相反， fg/bg命令） | |
-| STOP | 19 | 暂停 | Ctrl + Z |
-
-## HUP 信号
-```bash
-# 更改配置而不需停止并重新启动服务
-# 在对配置文件作必要的更改后，发出该命令以动态更新服务配置
-# 根据约定，当您发送一个挂起信号（信号 1 或 HUP）时，大多数服务器进程（所有常用的进程）都会进行复位操作并重新加载它们的配置文件。
-kill -HUP pid
-```
