@@ -2,6 +2,7 @@
 title: Linux常用命令
 copyright: true
 date: 2016-09-28 15:59:12
+categories: Linux
 tags: Linux
 ---
 
