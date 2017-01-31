@@ -96,6 +96,27 @@ ssh-keygen
 
 # 将公钥上传到服务器，将公钥添加到服务器的 ~/.ssh/authorized_keys 文件中
 ssh-copy-id devin@terraria.way2hacker.com
+
+# t 选项：强制分配伪终端，可以在远程机器上执行任何全屏幕（screen-based）程序
+ssh -t peter@happycasts.net 'touch a.txt'
+```
+
+## rsync
+```bash
+# mydir 后面不能有 /
+# happycasts: 不能没有 :
+rsync -r mydir happycasts.net:
+rsync -r happycasts.net:mydir .
+
+# 同步目录下的文件
+# 都必须有 /
+rsync -r mydir/ happycasts.net:mydir/
+
+rsync -av mydir/ happycasts.net:mydir/
+# 将删除信息也同步上去
+rsync -av --delete mydir/ happycasts.net:mydir/
+# 打印信息
+rsync -av --delete mydir/ happycasts.net:mydir/ --dry-run
 ```
 
 
@@ -154,3 +175,39 @@ curl ifconfig.co
 # 返回IP、位置及服务商
 curl ip.gs
 ```
+
+## df 查看磁盘分区使用情况
+| 选项 | 功能 |
+|-----|------------------------------|
+| l | 仅显示本地磁盘（默认） |
+| a | 显示所有文件系统的磁盘使用情况，比如包含`/proc/` |
+| h | 以 1024 进制计算最合适的单位显示磁盘容量 |
+| H | 以 1000 进制计算最合适的单位显示磁盘容量 |
+| T | 显示磁盘分区类型 |
+| t | 显示指定类型文件系统的磁盘分区 |
+| x | 不显示指定类型文件系统的磁盘分区 |
+
+
+## du 统计磁盘上的文件大小
+| 选项 | 功能 |
+|-----|------------------------------|
+| b | 以 byte 为单位统计文件 |
+| k | 以 KB 为单位统计文件 |
+| m | 以 MB 为单位统计文件 |
+| h | 按照 1024 进制以最合适的单位统计文件 |
+| H | 按照 1000 进制以最合适的单位统计文件 |
+| s | 指定统计目标 |
+
+## mount
+| -o 选项参数 | 说明 |
+|------------|-------------------------------|
+| atime/noatime | 访问分区文件时，是否更新文件的访问时间，默认为更新 |
+| async/sync | 默认为异步 |
+| defaults | `mount -a`命令执行时，是否会自动安装`/etc/fstab`文件内容挂载，默认为自动 |
+| exec/noexec | 定义默认值，相当于rw，suid，dev，exec，auto，nouser，async这七个选项 |
+| remount | 重新挂载已经挂载的文件系统，一般用于指定修改特殊权限 |
+| rw/ro | 文件系统挂载时，是否具有读写权限，默认是rw |
+| suid/nosuid | 设定文件系统是否具有SUID和SGID的权限，默认是具有 |
+| user/nouser | 设定文件系统是否允许普通用户挂载，默认是不允许，只有root可以挂载分区 |
+| usrquota | 写入代表文件系统支持用户磁盘配额，默认不支持 |
+| grpquota | 写入代表文件系统支持组磁盘配额，默认不支持 |
