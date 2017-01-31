@@ -9,9 +9,9 @@ tags: Linux
 > 待整理的 Linux 命令
 <!-- more -->
 
-## 端口占用情况
+## 查看端口占用情况
 ```bash
-netstat -tlnp
+netstat -lnpt
 ```
 
 ## 系统信息
@@ -22,9 +22,9 @@ uname -a
 
 ## 语言相关
 ```bash
-#查看安装的语系
+# 查看安装的语系
 locale -a
-#安装中文
+# 安装中文
 sudo locale-gen zh_CN.UTF-8
 ```
 
@@ -47,54 +47,55 @@ tar jcvf xxx.tar.bz2 xxx/
  
  
 ## less分页工具（man底层基于less）
-Ctrl + +： 放大字体 
-Ctrl + -： 缩小字体 
-j： 向下滚屏 
-k： 向上滚屏 
-g： 光标到文件头 
-G： 光标到文件尾 
-q： 退出 
+- Ctrl + +： 放大字体 
+- Ctrl + -： 缩小字体 
+- j： 向下滚屏 
+- k： 向上滚屏 
+- g： 光标到文件头 
+- G： 光标到文件尾 
+- q： 退出 
 
- 
-## 查找
-locate 系统全局： 
-locate --regexp xxx(正则) 
-sudo updatedb： 手动更新数据库 
-find 目录翻个底朝天： 
-find . | grep .txt 
-find . -type f(或d) 
-find . -type f -exec ls -l '{}' ';' 
-find . -type f -exec grep -ni hello '{}' ';' -print 
-n:行号 
-i:忽略大小写 
--print:文件名 
- 
-## 常用
-ls -ld mydir #查看目录信息 
-ps aux  #查看所有进程状态 
-命令之后加上 & ： 后台执行 
-Ctrl + Z： 移至后台并暂停 
-bg： 后台任务执行 
-fg： 将后台任务移至前台 
-kill -9： 强杀异常进程 #kill -9 5029 
-kill -15： 默认方式 
-kill -2： 相当于Ctrl + C 
-ln -s happygrep hg 
-file a.txt 
-source peter.sh 在当前shell中执行
+
+## locate 系统全局查找
+```bash
+# 使用正规式查找
+locate --regexp <regexp>
+
+# 更新 locate 依赖的数据库
+sudo updatedb
+```
+
+## find
+```bash
+# 与 grep 配合使用
+find . | grep .txt
+# 按类型查找
+find . -type f
+find . -type d
+
+# exec 选项
+find . -type f -exec ls -l '{}' ';'
+## n 选项（grep）：显示行号
+## i 选项（grep）：忽略大小写
+## -print：同时输出文件名
+find . -type f -exec grep -ni hello '{}' ';' -print
+```
+
+## ls
+```bash
+# 查看目录本身信息
+ls -ld <dir>
+```
  
 ## ssh
 ```bash
-ssh peter@happycasts.net
-
 # 默认将密钥生成到 ~/.ssh 里
 # 私钥： id_rsa
 # 公钥： id_rsa.pub
 ssh-keygen
 
-# 将公钥上传到服务器
-# 或许要在 ~/.ssh 目录下（未测试）,上传后在服务器上名为： ~/.ssh/authorized_keys
-ssh-copy-id peter@happycasts.net
+# 将公钥上传到服务器，将公钥添加到服务器的 ~/.ssh/authorized_keys 文件中
+ssh-copy-id devin@terraria.way2hacker.com
 ```
 
 
@@ -117,15 +118,8 @@ sudo apt-get purge git
 apt-cache search ncurse | less 
 ```
 
- 
-## 编译安装通常步骤
-```bash
-./configure 
-make 
-sudo make install 
-```
 
-## 制作启动U盘
+## dd 制作启动U盘
 ```bash
 sudo dd if=~/Download/openSUSE-Leap-42.1-DVD-x86_64.iso of=/dev/sdb bs=4M
 ```
@@ -141,7 +135,22 @@ nohup ./program >/dev/null 2>&1 &
 
 ## tail
 显示文件后几行，默认 10 行。一般用于查看日志。
+
 ```bash
 # 监视日志输出
 tail -f nohup.out
+```
+
+## 查看内存使用情况
+```bash
+# h 选项为 human-readable
+free -h
+```
+
+## 查看公网IP
+```bash
+# 仅返回IP
+curl ifconfig.co
+# 返回IP、位置及服务商
+curl ip.gs
 ```
