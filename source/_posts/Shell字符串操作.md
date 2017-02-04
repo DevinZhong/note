@@ -1,7 +1,9 @@
 ---
 title: Shell字符串操作
 date: 2017-02-04 00:03:43
-tags: Linux
+tags:
+  - Linux
+  - Shell script
 categories: Linux
 ---
 

@@ -1,7 +1,9 @@
 ---
 title: Shell逻辑表达式
 date: 2017-02-04 15:31:57
-tags: Linux
+tags:
+  - Linux
+  - Shell script
 categories: Linux
 ---
 

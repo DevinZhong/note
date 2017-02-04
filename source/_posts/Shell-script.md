@@ -15,24 +15,80 @@ categories: Linux
 - 用户自定义变量只在当前的 Shell 中生效
 - 环境变量在当前 Shell 和这个 Shell 的所有子 Shell 中生效
 
-## 常用环境变量
-| 环境变量 | 存放内容 |
-|---------|--------------------------|
-| HOSTNAME | 主机名 |
-| SHELL | 当前的 shell |
-| TERM | 终端环境 |
-| HISTSIZE | 历史命令条数 |
-| SSH_CLIENT | 当前操作环境是用 ssh 连接的，这里记录客户端 IP |
-| SSH_TTY | ssh 连接的终端是 pts/1 |
-| USER | 当前登录的用户 |
-| PS1 | 命令提示符设置 |
 
-## Shell 预定义变量
-| 预定义变量 | 作用 |
-|--------|--------------------------------|
-| $? | 最后一次执行的命令的返回状态。返回 0（正确执行）或非 0（执行不正确） |
-| $$ | 当前进程的进程号（PID） |
-| $! | 后台运行的最后一个进程的进程号（PID） |
+## Bash Shell 预定义变量
+预定义变量 | 存放内容
+-----------|-------------------------------------------------
+$HOSTTYPE | 机器CPU类型（i386,i686,x86_64）
+$LANG | 机器语言及编码（en_US.UTF-8）
+$BASH | 当前Bash类型（/bin/bash,/bin/sh）
+$BASH_VERSION | bash版本（3.2.25(1)-release）
+$MACHTYPE | 机器类型machine type（x86_64-redhat-linux-gnu）
+$HOSTNAME | 主机名
+$OSTYPE | 操作系统类型（linux-gnu）
+$PATH | 环境变量
+$LOGNAME | 当前登录用户名
+$TERM | term类型（xterm）
+$RANDOM | 产生随机整数
+$SHELL | 当前的shell
+$HISTSIZE | 历史命令条数
+$SSH_CLIENT | 当前操作环境是用ssh连接的，这里记录客户端IP
+$SSH_TTY | ssh连接的终端是pts/1
+$USER | 当前登录的用户
+$PS1 | 命令提示符设置
+
+## Shell中常见字串含义
+
+字串 | 含义
+---------------|-------------------------------------------------
+$$ | 当前进程的pid
+$! | 获取上条命令执行的进程pid
+$? | 获取程序返回值（成功为0，错误为其他）
+$# | 获取参数个数
+$@ | 获取参数列表 （$* 也是获取参数列表）
+{% raw %}${#array[@]}{% endraw %} | 获取数组长度（元素个数），array为数组名
+${array[*]} | 获取数组元素列表
+{% raw %}${#str}{% endraw %} | 获取字符串长度
+${name:?error message} | 检查一个变量是否存在
+
+
+## Bang (!) 命令
+```
+!!：执行上一条命令
+!blah：执行最近的以 blah 开头的命令，如 !ls
+!blah:p：仅打印输出，而不执行
+!$：上一条命令的最后一个参数，与 Alt + . 相同
+!$:p：打印输出 !$ 的内容
+!*：上一条命令的所有参数
+!*:p：打印输出 !* 的内容
+^blah：删除上一条命令中的 blah
+^blah^foo：将上一条命令中的 blah 替换为 foo
+^blah^foo^：将上一条命令中所有的 blah 都替换为 foo
+```
+
+## Here Documents
+```bash
+var="Linux"
+
+# EOF 只是一个标识而已，可以替换成任意的合法字符
+# 作为起始的 delimiter 前后的空格会被省略掉
+cat << EOF
+Hello $var
+        Hello ${var}
+EOF
+
+# 使用引号，不展开变量
+cat << "EOF"
+Hello $var
+        Hello ${var}
+EOF
+
+# 使用 <<-，将每行前面的 tab（制表符）去除
+cat <<- EOF
+Hello $var
+        Hello ${var}
+EOF
+```
 
 
 ## read
