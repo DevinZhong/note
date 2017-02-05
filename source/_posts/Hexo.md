@@ -32,6 +32,9 @@ hexo g -s
 
 ### add-tail.js
 ```js
+/**
+ * 此脚本需要在文章头部设置 copyright: true
+ */
 var fs = require('fs')
 
 hexo.extend.filter.register('before_post_render', function (data) {
