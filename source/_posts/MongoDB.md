@@ -62,6 +62,13 @@ GeoJSON：描述一个点，一条线，多边形等形状
 - dbOwner：以上三个的结合体
 - userAdmin：管理用户
 
+### MongoDB 用户角色详解
+1. 数据库角色（read,readWrite,dbAdmin,dbOwner,userAdmin）
+2. 集群角色（clusterAdmin,clusterManager...）
+3. 备份角色（backup,restore...）
+4. 其他特殊权限（DBAdminAnyDatabase...）
+
+
 
 ### 用户管理：
 ```js
@@ -148,8 +155,6 @@ db.location.find({w:{$geoWithin:{$polygon:[[0,0],[0,1],[2,5],[6,1]]}}}) //多边
 //geoNear
 db.runCommand({geoNear:"location",near:[1,2],maxDistance:10,num:2})
 //2dsphere
-
-
 ```
 
 
@@ -339,6 +344,109 @@ du -shc local.* //新版不可行
 ```
 
 选举四个阶段：心跳检测、维护主节点备选列表、选举准备、投票
+
+### 主节点检测
+```flow
+cond1=>condition: 自己是否为主节点？
+cond2=>condition: 能否看到大多数？
+cond3=>condition: 是否有主节点？
+cond4=>condition: 列表中是否存在比
+当前主节点 priority
+更高的节点？
+cond5=>condition: opTime 与最新节点
+差距是否不超过 10s？
+op1=>operation: 与主节点备用列表比对
+op2=>operation: opTime 比对
+e1=>end: 主节点降级
+e2=>end: 进入选举
+准备环节
+
+cond1(yes,right)->cond2
+cond2(no)->e1
+cond1(no)->cond3
+cond3(yes)->op1->cond4
+cond4(yes)->op2->cond5
+cond5(yes)->e1
+cond3(no)->e2
+```
+
+### 主节点备用列表维护
+```flow
+op=>operation: 心跳检测
+cond1=>condition: 是否异常？
+cond2=>condition: 自检：是否满足
+大多数原则？
+cond3=>condition: 自检：priority
+是否大于等于 1？
+cond4=>condition: 自检：status 是
+否为 secondary
+（否则为 arbiter）？
+cond5=>condition: 自检：opTime与主的
+差距在 10 秒内？
+e1=>end: 将自己加入
+主节点备选列表
+e2=>end: 将自己移除
+主节点备选列表
+e3=>end: 全部变为从节点，
+主节点也降级为从节点
+
+op->cond1
+cond1(yes)->cond2
+cond2(yes)->cond3
+cond3(yes)->cond4
+cond4(yes)->cond5
+cond5(yes)->e1
+cond2(no)->e3
+cond3(no)->e2
+cond4(no)->e2
+cond5(no)->e2
+```
+
+### 自选方法验证
+```flow
+cond1=>condition: 是否拿到线程锁？
+cond2=>condition: 是否够资格？
+cond3=>condition: opTime 是否合格？
+e1=>end: 索取投票
+e2=>end: 不索取投票
+
+cond1(no)->e2
+cond1(yes)->cond2
+cond2(no)->e2
+cond2(yes)->cond3
+cond3(no)->e2
+cond3(yes)->e1
+```
+
+### 选举准备（集群中无主节点）
+```flow
+cond1=>condition: 是否在列表中？
+cond2=>condition: 是否看到大多数？
+e1=>end: 调用“自选”方法
+e2=>end: 退出流程
+
+cond1(no)->e2
+cond1(yes)->cond2
+cond2(no)->e2
+cond2(yes)->e1
+```
+
+### 投票
+```flow
+e1=>end: 上位成功
+e2=>end: 上位失败
+e3=>end: 重新投票
+cond1=>condition: 是否有反对票？
+cond2=>condition: 是否有票数一样的？
+cond3=>condition: 是否票数过半？
+
+cond1(yes,right)->e2
+cond1(no)->cond2
+cond2(yes,right)->e3
+cond2(no)->cond3
+cond3(no)->e2
+cond3(yes)->e1
+```
 
 
 ## 单实例复制集启动

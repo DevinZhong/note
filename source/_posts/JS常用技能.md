@@ -1,9 +1,12 @@
 ---
 title: JS常用技能
-copyright: true
 date: 2016-10-02 01:38:20
 tags: JavaScript
+categories: JavaScript
 ---
+
+> JavaScript 待整理的东西
+<!-- more -->
 
 ## 删除数组元素
 ```js
@@ -70,5 +73,20 @@ actionList = {
     b() {
         // do something
     },
+}
+```
+
+## 去抖
+```js
+function debounce( action, delay ) {
+    var timeoutID = 0;
+    return function() {
+        var args = arguments, ctx = this;
+        clearTimeout(timeoutID);
+
+        timeoutID = setTimeout( function() {
+            fn.apply( action, args );
+        }, delay );
+    };
 }
 ```

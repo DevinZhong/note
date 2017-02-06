@@ -1,9 +1,12 @@
 ---
 title: jQuery-free
-copyright: true
 date: 2016-10-02 01:30:36
 tags: JavaScript
+categories: JavaScript
 ---
+
+> 觉得 jQuery 太重？你可以使用这些原生方法替代 jQuery 的 DOM 处理
+<!-- more -->
 
 ## 事件监听
 ```js
@@ -63,7 +66,6 @@ element.classList.toggle(classname)
 // change css style
 element.style.display('none');
 
-
 // hasClass
 element.classList.contains('xxx');
 element.className.match(/xxx/);
@@ -87,8 +89,6 @@ el.innerHTML = htmlString;
 // dom prepend/append
 element.insertAdjacentHTML('afterbegin','something u want to insert');
 element.insertAdjacentHTML('beforeend','something u want to insert');
-
-
 
 // remove
 el.parentNode.removeChild(el);
