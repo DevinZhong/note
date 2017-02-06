@@ -1,10 +1,10 @@
 ---
 title: npm
-copyright: true
 date: 2016-10-02 01:40:13
 tags:
   - npm
   - Node.js
+categories: JavaScript
 ---
 
 ## 使用淘宝源
@@ -23,8 +23,8 @@ npm config get registry
 ```
 
 ## 模块版本规则
-尖括号是一个比较宽松的对版本的限制，它只限制主版本号 ^0.7.3
-波浪号是一个比较严格的对版本的限制，它限制到次版本号 ~0.4.1
+- 尖括号是一个比较宽松的对版本的限制，它只限制主版本号 ^0.7.3
+- 波浪号是一个比较严格的对版本的限制，它限制到次版本号 ~0.4.1
 
 
 ## 常用命令
@@ -53,6 +53,25 @@ npm ls -g --depth=1 2>/dev/null | grep generator-
 ```
 
 ## 解决方案
+
+### Vagrant 下建立软链接出错
+- 一次性简单粗暴法
+```bash
+npm install --no-bin-links
+```
+- 一劳永逸简单粗暴法
+```bash
+npm config set bin-links false
+```
+- 正确解决姿势
+ 1. 编辑 Vagrantfile
+   ```
+   config.vm.provider "virtualbox" do |v|
+     v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
+   end
+   ```
+ 2. 管理员模式启动 babun
+
 
 ### 写死并打包依赖
 ```json
