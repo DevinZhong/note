@@ -39,7 +39,7 @@ element.previousElementSibling
 // 下一元素
 element.nextElementSibling
 
-// 兄弟节点
+// 所有兄弟节点
 [].filter.call(el.parentNode.children, function(child) {
   return child !== el;
 });
@@ -128,4 +128,10 @@ function getOffset (el) {
     left: box.left + window.pageXOffset - document.documentElement.clientLeft
   }
 }
+```
+
+## 克隆元素
+```js
+// 参数默认即为 true，表示深拷贝
+el.cloneNode(true)
 ```
