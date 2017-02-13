@@ -48,6 +48,13 @@ tags: CSS
 | [attribute$=value] | 匹配属性值以指定值结尾的每个元素 |
 | [attribute*=value] | 匹配属性值中包含指定值的每个元素 |
 
+## 属性选择器
+> 巧用属性选择器可以减少类的设置
+```css
+[draggable=true] {
+    cursor: move;
+}
+```
 
 ## 常用 CSS3 样式
 ```css
@@ -168,5 +175,15 @@ div {
 ```css
 div {
   word-break: break-all;
+}
+```
+
+### 设置大小可调整
+```css
+.resizable {
+  overflow: scroll;
+  resize: both;
+  max-width: 300px;
+  max-height: 460px;
 }
 ```
