@@ -20,6 +20,25 @@ action(e) {
 }
 ```
 
+### 捕获两个按键
+把按键状态缓存下来，类似这样：
+
+```js
+var pressingStatus = {};
+
+elem.onkeydown = function (e) {
+pressingStatus[e.keyCode] = true;
+
+if (pressingStatus[keyA] && pressingStatus[keyB] && ...) {
+// do something
+}
+};
+
+elem.onkeyup = function (e) {
+pressingStatus[e.keyCode] = false;
+}
+```
+
 ### a标签不跳转的一种写法（不知有什么优势）
 ```html
 <a href="javascript:;"></a>
