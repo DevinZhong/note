@@ -8,23 +8,31 @@ categories: JavaScript
 > JavaScript 待整理的东西
 <!-- more -->
 
-## 删除数组元素
+## 数组
+### 删除数组元素
 ```js
 photo = photos.splice(n, 1)[0];// 返回被删除的元素
 ```
 
-## 数组切分
+### 数组切分
 ```js
 var photos_left = photo.splice(0, Math.ceil(photos.length/2));
 var photos_right = photos;
 ```
 
-## 修改样式属性
+### 模拟 push
+```js
+arr[arr.length] = 'new value'
+arr[arr.length] = 'another value'
+```
+
+## 样式
+### 修改样式属性
 ```js
 photo.style['-webkit-transform'] = `rotate(${random([-150, 150])}deg)`;
 ```
 
-## 切换class样式
+### 切换class样式
 ```js
 function turn(elem){
 	var cls = elem.className;
@@ -37,23 +45,26 @@ function turn(elem){
 }
 ```
 
-## 去除元素样式
+### 去除元素样式
 ```js
 photo.className = photo.className.replace(/\s*photo_center\s*/, ' ');
 ```
 
-## 为元素添加样式
+### 为元素添加样式
 ```js
 photo.className += ' photo_center ';
 ```
 
-## 简易元素选择器
+## 选择元素
+### 简易元素选择器
 ```js
-funtion g(selector){
-	var method = selector.charAt(0) == '.' ?
-    	'getElementsByClassName' :
-        'getElementById';
-    return document[method](selector.substr(1));
+let $ = function(selector) {
+    if (selector.charAt(0) === '#') {
+        // return document.getElementById(selector.substr(1))
+        return document.querySelector(selector)
+    } else {
+        return document.querySelectorAll(selector)
+    }
 }
 ```
 
@@ -61,10 +72,11 @@ funtion g(selector){
 ```js
 var _html = template.replace('{{index}}', s).replace('{{img}}', data[s].img);
 html.push(_html);
-g('#wrap').innerHTML = html.join('');//最后联合
+g('#wrap').innerHTML = html.join('');  // 最后联合
 ```
 
-## 优化switch
+## 性能调优
+### 优化switch
 ```js
 actionList = {
     a() {
@@ -76,7 +88,7 @@ actionList = {
 }
 ```
 
-## 去抖
+### 去抖
 ```js
 function debounce( action, delay ) {
     var timeoutID = 0;
