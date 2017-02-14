@@ -5,7 +5,7 @@
 # Site
 title: 黑客笔记
 subtitle: 有记有查
-description: 个人笔记，比较杂，更新较频繁。
+description: 个人笔记，比较杂，更新较频繁
 keywords: notes, coding, Japanese
 author: Devin Zhong
 email: devinzhong@outlook.com
@@ -31,7 +31,7 @@ skip_render:
 
 # Writing
 new_post_name: :title.md # File name of new posts
-default_layout: post
+default_layout: draft
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
