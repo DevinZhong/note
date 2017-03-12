@@ -54,6 +54,16 @@ npm ls -g --depth=1 2>/dev/null | grep generator-
 
 ## 解决方案
 
+### node 没权限绑定 1024 以下的端口，导致 npm run dev 起不来
+```bash
+sudo setcap 'cap_net_bind_service=+ep' $(which node)
+```
+
+### 安装 node-sass
+```bash
+npm install --save node-sass --registry=https://registry.npm.taobao.org --disturl=https://npm.taobao.org/dist --sass-binary-site=http://npm.taobao.org/mirrors/node-sass
+```
+
 ### Vagrant 下建立软链接出错
 - 一次性简单粗暴法
 ```bash
