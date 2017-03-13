@@ -28,6 +28,12 @@ chrome://net-internals/#dns
 ## plugins
 chrome://plugins/
 
+## service worker 相关
+### 展示当前设备上激活和存储的 service worker
+chrome://inspect/#service-workers
+### 开始/暂停/调试 worker 的进程
+chrome://serviceworker-internals
+
 ## components
 全局代理下更新 flash，更新后重启即可
 
