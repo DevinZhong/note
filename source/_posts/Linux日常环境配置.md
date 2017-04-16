@@ -65,3 +65,34 @@ spectacle -r
 5. 在搜索里输入“显示桌面”
 6. 点击搜索结果列表中的“显示桌面”
 7. 选择自定义，设置快捷键为 `Win + D`
+
+## 运维常用配置
+### 手工配置防火墙
+```bash
+vi /etc/sysconfig/iptables
+/etc/init.d/iptables restart
+```
+
+### 关闭 SELINUX
+```bash
+rm -rf /etc/selinux/config
+echo 'SELINUX=disabled' > /etc/selinux/config
+```
+
+### 配置常用服务开机启动
+```bash
+chkconfig nginx on
+chkconfig mysqld on
+chkconfig php-fpm on
+```
+
+### 限制 ssh
+```bash
+cat << EOF >> /etc/ssh/sshd_config
+Port 10022
+protocol 2
+PermitRootLogin no
+EOF
+service sshd reload
+ssh -p 10022 devin@host.com
+```
