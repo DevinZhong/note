@@ -147,12 +147,21 @@ span {
 }
 ```
 
-### 传统方法设置垂直居中
+### 居中
+- 传统方法设置垂直居中
 ```css
 div {
   position: absolute;
   top: 50%;
   margin-top: -300; /*设置为高度一半*/
+}
+```
+- CSS3 居中（水平）
+```css
+div {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 ```
 
@@ -185,5 +194,33 @@ div {
   resize: both;
   max-width: 300px;
   max-height: 460px;
+}
+```
+
+### 弹出模态框后禁止屏幕滚动
+有两种解决方案：
+1. 使用 overflow
+```js
+function showDialog() {
+  document.body.style.overflow = 'fixed'
+  document.documentElement.style.position = 'fixed' // 未测试是否必要
+}
+function hideDialog() {
+  document.body.style.overflow = 'auto'
+  document.documentElement.style.position = 'auto' // 未测试是否必要
+}
+```
+
+2. 使用 position
+```js
+let scrollTop
+function showDialog() {
+  scrollTop = document.body.scrollTop
+  document.body.style.position = 'fixed'
+  document.body.style.top = `-${scrollTop}px`
+}
+function hideDialog() {
+  document.body.style.position = ''
+  document.body.scrollTop = scrollTop
 }
 ```
