@@ -61,7 +61,7 @@ sudo setcap 'cap_net_bind_service=+ep' $(which node)
 
 ### 安装 node-sass
 ```bash
-npm install --save node-sass --registry=https://registry.npm.taobao.org --disturl=https://npm.taobao.org/dist --sass-binary-site=http://npm.taobao.org/mirrors/node-sass
+npm install --save-dev node-sass --registry=https://registry.npm.taobao.org --disturl=https://npm.taobao.org/dist --sass-binary-site=http://npm.taobao.org/mirrors/node-sass
 ```
 
 ### Vagrant 下建立软链接出错
